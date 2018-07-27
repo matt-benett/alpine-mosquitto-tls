@@ -2,7 +2,7 @@ FROM python:2.7-alpine
 LABEL maintainer bitrox <proxy@bitrox.io>
 
 # Set environment variables. 
-ENV TERM=xterm-color 
+#ENV TERM=xterm-color 
 ENV SHELL=/bin/bash
 
 RUN \
@@ -14,15 +14,12 @@ RUN \
 	apk add \
 		bash \
 		coreutils \
-		nano \
-        	py-crypto \
-		ca-certificates \
-        	certbot \
 		mosquitto \
 		mosquitto-clients && \
 	rm -f /var/cache/apk/* && \
-	pip install --upgrade pip && \
-	pip install pyRFC3339 configobj ConfigArgParse
+	#pip install --upgrade pip 
+	#&& \
+	#pip install pyRFC3339 configobj ConfigArgParse
 	
 COPY run.sh /run.sh
 COPY restart.sh /restart.sh
