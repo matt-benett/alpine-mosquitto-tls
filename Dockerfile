@@ -2,8 +2,8 @@ FROM python:2.7-alpine
 LABEL maintainer bitrox <proxy@bitrox.io>
 
 # Set environment variables.
-#ENV TERM=xterm-color
-#ENV SHELL=/bin/bash
+ENV TERM=xterm-color
+ENV SHELL=/bin/bash
 
 RUN \
 	mkdir /mosquitto && \
@@ -14,13 +14,12 @@ RUN \
 	apk add \
 		bash \
 		coreutils \
-		nano \
+		vim \
  		mosquitto \
 		mosquitto-clients && \
-	rm -f /var/cache/apk/* 
-	#&& \
-	#pip install --upgrade pip && \
-	#pip install pyRFC3339 configobj ConfigArgParse
+	rm -f /var/cache/apk/* && \
+	pip install --upgrade pip && \
+	pip install pyRFC3339 configobj ConfigArgParse
 
 COPY run.sh /run.sh
 COPY restart.sh /restart.sh
