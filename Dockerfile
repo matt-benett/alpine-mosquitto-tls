@@ -16,7 +16,7 @@ RUN \
 		coreutils \
 		mosquitto \
 		mosquitto-clients && \
-	rm -f /var/cache/apk/* && \
+	rm -f /var/cache/apk/* 
 	#pip install --upgrade pip 
 	#&& \
 	#pip install pyRFC3339 configobj ConfigArgParse
