@@ -29,7 +29,7 @@ COPY restart.sh /restart.sh
 
 RUN \
 	chmod +x /run.sh && \
-	chmod +x /restart.sh && \
+	chmod +x /restart.sh
 	
 EXPOSE 1883 
 EXPOSE 8883 
