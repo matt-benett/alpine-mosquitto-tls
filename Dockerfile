@@ -17,12 +17,13 @@ RUN \
 		nano \
  		mosquitto \
 		mosquitto-clients && \
-	rm -f /var/cache/apk/* && \
-	pip install --upgrade pip && \
-	pip install pyRFC3339 configobj ConfigArgParse
+	rm -f /var/cache/apk/* 
+	#&& \
+	#pip install --upgrade pip && \
+	#pip install pyRFC3339 configobj ConfigArgParse
 
 COPY run.sh /run.sh
-CCOPY restart.sh /restart.sh
+COPY restart.sh /restart.sh
 RUN \
 	chmod +x /run.sh && \
 	chmod +x /restart.sh && \
