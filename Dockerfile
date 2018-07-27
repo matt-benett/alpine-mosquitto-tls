@@ -25,15 +25,11 @@ RUN \
 	pip install pyRFC3339 configobj ConfigArgParse
 	
 COPY run.sh /run.sh
-COPY certbot.sh /certbot.sh
 COPY restart.sh /restart.sh
-COPY croncert.sh /etc/periodic/weekly/croncert.sh
 
 RUN \
 	chmod +x /run.sh && \
-	chmod +x /certbot.sh && \
 	chmod +x /restart.sh && \
-	chmod +x /etc/periodic/weekly/croncert.sh
 	
 EXPOSE 1883 
 EXPOSE 8883 
