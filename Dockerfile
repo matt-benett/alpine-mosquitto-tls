@@ -1,8 +1,8 @@
-FROM python:2.7-alpine
+FROM python:2.7-alpine 
 LABEL maintainer bitrox <proxy@bitrox.io>
 
-# Set environment variables.
-ENV TERM=xterm-color
+# Set environment variables. 
+ENV TERM=xterm-color 
 ENV SHELL=/bin/bash
 
 RUN \
@@ -14,23 +14,30 @@ RUN \
 	apk add \
 		bash \
 		coreutils \
-		vim \
- 		mosquitto \
+		nano \
+        	py-crypto \
+		ca-certificates \
+        	certbot \
+		mosquitto \
 		mosquitto-clients && \
 	rm -f /var/cache/apk/* && \
 	pip install --upgrade pip && \
 	pip install pyRFC3339 configobj ConfigArgParse
-
+	
 COPY run.sh /run.sh
+COPY certbot.sh /certbot.sh
 COPY restart.sh /restart.sh
+COPY croncert.sh /etc/periodic/weekly/croncert.sh
+
 RUN \
 	chmod +x /run.sh && \
+	chmod +x /certbot.sh && \
 	chmod +x /restart.sh && \
+	chmod +x /etc/periodic/weekly/croncert.sh
+	
+EXPOSE 1883 
+EXPOSE 8883 
+EXPOSE 80 
 
-EXPOSE 1883
-EXPOSE 8883
-EXPOSE 80
-
-# This will run any scripts found in /scripts/*.sh
-# then start Apache
+# This will run any scripts found in /scripts/*.sh # then start Apache 
 CMD ["/bin/bash","-c","/run.sh"]
